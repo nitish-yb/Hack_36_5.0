@@ -1,44 +1,63 @@
-import React, { Component } from "react";
+// // import logo from './logo.svg';
+import './App.css';
+import React, {useState} from 'react';
+import {auth} from './firebase';
+import {useAuthState} from 'react-firebase-hooks/auth';
+import Login from './login';
+import Mainpage from './main';
+function App() {
+  const [pos, setPos] = useState({lat: "", long: ""})
+  const [user] = useAuthState(auth);
+  console.log("current user");
+  console.log(user);
+    const  getLocation = () => {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(getCoords)
+        } else {
+          alert('GeoLocation not enabled');
+        }
+      }
 
-// Importing geolocated reducer function
-import { geolocated } from "react-geolocated";
+    const getCoords = (pos) => {
+        console.log(pos)
+        setPos({
+          lat: pos.coords.latitude,
+          long: pos.coords.longitude
+        })
+      }
+  return (
+    <div className="App">
+      {/* <h1>HeLLO</h1>
+      <button onClick={getLocation}>Click me</button>
+        <p>lat: {pos.lat}</p>
+        <p>long {pos.long}</p> */}
+        {/* if(user)
+        <Mainpage></Mainpage>
+        
+        else
+        <Login></Login> */}
+        {user!=null?<Mainpage/>:<Login/>}
+        {/* user ? <Mainpage/> : <Login/> */}
+        
+        {/* <Login></Login> */}
+    </div>
 
-class App extends Component {
-render() {
-
-	// Check geolocation supported in
-	// browser or not
-	return this.props.isGeolocationAvailable ? (
-
-	// Check location is enable in
-	// browser or not
-	this.props.isGeolocationEnabled ? (
-
-		// Check coordinates of current
-		// location is available or not
-		this.props.coords ? (
-		<div>
-			<h1 style={{ color: "green" }}>GeeksForGeeks</h1>
-			<h3 style={{ color: "red" }}>
-			Current latitude and longitude of the user is
-			</h3>
-			<ul>
-			<li>latitude - {this.props.coords.latitude}</li>
-			<li>longitude - {this.props.coords.longitude}</li>
-			</ul>
-		</div>
-		) : (
-		<h1>Getting the location data</h1>
-		)
-	) : (
-		<h1>Please enable location on your browser</h1>
-	)
-	) : (
-	<h1>Please, update your or change the browser </h1>
-	);
+  );
 }
-}
 
-// Binding geolocated() reducer function to
-// App component, while exporting it
-export default geolocated()(App);
+export default App;
+// import React from 'react';
+// import {auth} from './firebase';
+// import {useAuthState} from 'react-firebase-hooks/auth';
+// import Login from './login';
+// import Mainpage from './main';
+
+// function App() {
+// const [user] = useAuthState(auth);
+// return (
+// <h1> hello</h1>
+  
+// );
+// }
+
+// export default App;
