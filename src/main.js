@@ -6,7 +6,7 @@ require('firebase/compat/database');
 require('firebase/compat/firestore');
 const Mainpage = () => {
     const [pos, setPos] = useState({lat: "", long: ""})
-    
+    const [userPhone,setUserPhone]=useState("")
     const logout = () => {
         auth.signOut();
     }
@@ -15,9 +15,10 @@ const Mainpage = () => {
         if (navigator.geolocation) {
             await navigator.geolocation.getCurrentPosition(getCoords);
             console.log(auth.currentUser.phoneNumber);
+            setUserPhone(auth.currentUser.phoneNumber)
             console.log(pos.lat);
             const ll = new Firebase.firestore.GeoPoint(pos.lat, pos.long);
-            Firebase.firestore().collection('location').add({
+            await Firebase.firestore().collection('location').doc(userPhone).set({
                loc: ll
            })
         } else {
