@@ -5,6 +5,8 @@ import {auth} from './firebase';
 import {useAuthState} from 'react-firebase-hooks/auth';
 import Login from './login';
 import Mainpage from './main';
+import Home from './Home'
+import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 function App() {
   const [pos, setPos] = useState({lat: "", long: ""})
   const [user] = useAuthState(auth);
@@ -25,7 +27,7 @@ function App() {
           long: pos.coords.longitude
         })
       }
-  return (
+  return (<Router>
     <div className="App">
       {/* <h1>HeLLO</h1>
       <button onClick={getLocation}>Click me</button>
@@ -40,8 +42,11 @@ function App() {
         {/* user ? <Mainpage/> : <Login/> */}
         
         {/* <Login></Login> */}
-    </div>
+        
 
+        
+    </div>
+    </Router>
   );
 }
 

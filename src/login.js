@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { firebase, auth } from './firebase';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 require('firebase/compat/auth');
 const Login = () => {
 	// Inputs
@@ -40,18 +42,20 @@ const Login = () => {
 		<div style={{ "marginTop": "200px" }}>
 			<center>
 				<div style={{ display: !show ? "block" : "none" }}>
-					<input value={mynumber} onChange={(e) => {
-					setnumber(e.target.value) }}
-						placeholder="phone number" />
+				
+					<TextField id="outlined-basic" label="Phone " variant="outlined" value={mynumber} onChange={(e) => {
+						setnumber(e.target.value) }}
+							/>
 					<br /><br />
 					<div id="recaptcha-container"></div>
-					<button onClick={signin}>Send OTP</button>
+					<Button onClick={signin} variant='filled'>Send OTP</Button>
 				</div>
 				<div style={{ display: show ? "block" : "none" }}>
-					<input type="text" placeholder={"Enter your OTP"}
-						onChange={(e) => { setotp(e.target.value) }}></input>
+			
+					<TextField id="outlined-basic" label="OTP" variant="outlined" placeholder={"Enter your OTP"}
+						onChange={(e) => { setotp(e.target.value) }}/>
 					<br /><br />
-					<button onClick={ValidateOtp}>Verify</button>
+					<Button onClick={ValidateOtp}>Verify</Button>
 				</div>
 			</center>
 		</div>
