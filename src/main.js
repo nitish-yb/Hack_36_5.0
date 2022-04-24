@@ -66,6 +66,7 @@ const Mainpage = () => {
 
         const data = await response.get();
         let tempInfo = data.docs.map(e => e.data());
+        // let ok ;
         //  let array = []
         setInfo(tempInfo);
         console.log("TempInfo", tempInfo);
