@@ -9,7 +9,7 @@
 
 - PPT link - https://docs.google.com/presentation/d/1y0AEh7wOvHfUu8TgCXa-kGsAGSQwOfZs/edit?usp=sharing&ouid=100771524045199989748&rtpof=true&sd=true
 - Video Demo link - https://drive.google.com/file/d/1ZyDFRLk6NylcA4Ur8AytJxw52c6sEWtP/view?usp=sharing
-- Live Project Link - https://fastidious-dodol-2def14.netlify.app/
+
 
 
 ### Made at:
